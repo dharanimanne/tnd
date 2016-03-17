@@ -1,0 +1,49 @@
+{
+    "name": "MyUser",
+    "plural": "MyUsers",
+    "base": "User",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "fbId": {
+            "type": "string",
+            "required": true
+        },
+        "name": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string"
+        },
+        "first_name": {
+            "type": "string"
+        },
+        "last_name": {
+            "type": "string"
+        },
+        "mobile_number": {
+            "type": "string"
+        },
+        "gender": {
+            "type": "string"
+        },
+        "birthday": {
+            "type": "string"
+        },
+        "picture": {
+            "type": "string"
+        },
+        "home_city": {
+            "type": "string"
+        },
+        "current_city": {
+            "type": "string"
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+}

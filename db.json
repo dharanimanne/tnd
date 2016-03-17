@@ -1,0 +1,18 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 2,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {
+      "fwoWIHprIzfXxXTcQ6gwHNb03DTXQcDhjC9yvSsXC95xjNiKvm1iCCioZ3GWIfOp": "{\"id\":\"fwoWIHprIzfXxXTcQ6gwHNb03DTXQcDhjC9yvSsXC95xjNiKvm1iCCioZ3GWIfOp\",\"ttl\":1209600,\"created\":\"2016-03-17T21:18:23.332Z\",\"userId\":\"56eb1f1e0aa87ca63c8a0df9\"}"
+    },
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {}
+  }
+}
