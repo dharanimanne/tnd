@@ -14,22 +14,22 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "tnd"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "tnd",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "tnd",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "tnd",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "tnd",
     "public": false
   },
   "MyUser": {
@@ -37,6 +37,14 @@
     "public": true
   },
   "FacebookLogin": {
+    "dataSource": "tnd",
+    "public": true
+  },
+  "Article": {
+    "dataSource": "tnd",
+    "public": true
+  },
+  "Source": {
     "dataSource": "tnd",
     "public": true
   }

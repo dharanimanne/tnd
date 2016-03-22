@@ -5,7 +5,13 @@
     "file": "db.json"
   },
   "tnd": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "tnd",
+    "username": "",
+    "password": "",
     "name": "tnd",
-    "connector": "mongodb"
+    "connector": "mongodb",
+    "createDatabase": true
   }
 }

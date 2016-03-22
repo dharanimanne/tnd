@@ -11,15 +11,8 @@ module.exports = function(FacebookLogin) {
 
             if (data){
                 console.log("An existing user in the db is trying to login using facebook.");
-                var user_email = "";
 
-                if (data.fb_email){
-                    user_email = data.fb_email;
-                } else{
-                    user_email = "dummy@dummy.com";
-                }   
-
-                MyUser.login({email: user_email, password: "dummyPassword"}, function(err, accessToken){
+                MyUser.login({email: data.fb_email, password: "dummyPassword"}, function(err, accessToken){
                     if (err){
                         return console.error(err);
                     }
@@ -52,18 +45,11 @@ module.exports = function(FacebookLogin) {
                         } else{
 
                             if (fb_response.id == fb_id){
-                                MyUser.findOne({where: {fbId: fb_response.id}}, function(err, user){
+                                MyUser.findOne({where: {email: fb_response.email}}, function(err, user){
                                     if (user){
                                         console.log("A user who is in db but hasn't logged in through fb is here. \n");
 
-                                        var user_email = "";
-                                        if (user.email){
-                                            user_email = user.email;
-                                        } else{
-                                            user_email = "dummy@dummy.com";
-                                        }
-
-                                        MyUser.login({email: user_email, password: "dummyPassword"}, function(err, accessToken){
+                                        MyUser.login({email: fb_response.email, password: "dummyPassword"}, function(err, accessToken){
                                             if (err){
                                                 return console.error(err);
                                             }
@@ -74,14 +60,7 @@ module.exports = function(FacebookLogin) {
                                     } else{
                                         console.log("A new user is here to sign up. \n");
 
-                                        var user_email = "";
-                                        if (fb_response.email){
-                                            user_email = fb_response.email;
-                                        } else{
-                                            user_email = "dummy@dummy.com";
-                                        }
-
-                                        MyUser.create({fbId: fb_response.id, name: fb_response.name, first_name: fb_response.first_name, last_name: fb_response.last_name, email: fb_response.email, gender: fb_response.email, birthday: fb_response.birthday, picture: fb_response.picture, password: "dummyPassword", created: Date()}, function(err, user){
+                                        MyUser.create({name: fb_response.name, first_name: fb_response.first_name, last_name: fb_response.last_name, email: fb_response.email, gender: fb_response.gender, birthday: fb_response.birthday, picture: fb_response.picture, password: "dummyPassword", created: Date()}, function(err, user){
                                             if (err){
                                                 console.log("There was some error while trying to create a new user in db.");
                                                 return console.error(err);
@@ -91,7 +70,7 @@ module.exports = function(FacebookLogin) {
                                                     return console.error(err);
                                                 }
                                                 console.log("FacebookLogin created for new user: " + fb_login);
-                                                MyUser.login({email: user_email, password: "dummyPassword"}, function(err, accessToken){
+                                                MyUser.login({email: user.email, password: "dummyPassword"}, function(err, accessToken){
                                                     if (err){
                                                         return console.error(err);
                                                     }
