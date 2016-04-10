@@ -1,4 +1,4 @@
-module.exports = function(FacebookLogin) {
+module.expo://graph.facebook.com/me?fields=id,name,first_name,last_name,email,birthday,link,picture.width(800).height(800),gender&access_token='+fb_accesstokents = function(FacebookLogin) {
 
     /* Login method through facebook
      *
@@ -17,8 +17,20 @@ module.exports = function(FacebookLogin) {
                         return console.error(err);
                     }
                     console.log("Logging in existing user. \n");
-                    console.log("The access token of the user is : " + accessToken);
-                    cb(null, accessToken);
+                    console.log("The access token of the user is : %j", accessToken);
+		    
+		    var user_id = accessToken.userId;
+
+		    MyUser.find({where: {id: user_id}}, function(err, users){
+			if (err){
+			    return console.error(err);
+			}
+			
+			var user = users[0];
+			user.access_token = accessToken.id;
+			console.log("The user is : %j", user);
+  			cb(null, user);
+		    });
                 });
 
             } else{
@@ -55,12 +67,15 @@ module.exports = function(FacebookLogin) {
                                             }
                                             console.log("Logging in existing user. \n");
                                             console.log("The access token of the user is : " + accessToken);
-                                            cb(null, accessToken);
+
+					    user.access_token = accessToken.id;
+  					    
+					    cb(null, user);
                                         });
                                     } else{
                                         console.log("A new user is here to sign up. \n");
 
-                                        MyUser.create({name: fb_response.name, first_name: fb_response.first_name, last_name: fb_response.last_name, email: fb_response.email, gender: fb_response.gender, birthday: fb_response.birthday, picture: fb_response.picture, password: "dummyPassword", created: Date()}, function(err, user){
+                                        MyUser.create({name: fb_response.name, first_name: fb_response.first_name, last_name: fb_response.last_name, email: fb_response.email, gender: fb_response.gender, birthday: fb_response.birthday, link: fb_response.link, picture: fb_response.picture.data.url, password: "dummyPassword", created: Date()}, function(err, user){
                                             if (err){
                                                 console.log("There was some error while trying to create a new user in db.");
                                                 return console.error(err);
@@ -76,7 +91,9 @@ module.exports = function(FacebookLogin) {
                                                     }
                                                     console.log("Logging in existing user. \n");
                                                     console.log("The access token of the user is : " + accessToken);
-                                                    cb(null, accessToken);
+
+						    user.access_token = accessToken.id;
+                                                    cb(null, user);
                                                 });
                                             });
                                         });

@@ -30,3 +30,9 @@ Technical Flow Overview:
 
 Note : C - On Client, S - On Server. Login on client is always accompanied with a request to server if successful. This request will hold the fb id and fb access token obtained by the user through that client login. This request SHOULD be done through HTTPS only for security concerns.
 
+
+
+Instructions to follow for hosting :
+1. The current hosting is on DigitalOcean server, which is running ubuntu 14.04 LTS.
+2. The server being used is nginx for reverse proxying and pm2 is the daemon running the loopback server. 
+3. In case of any restarts, the pm2 daemon should be invoked and only then will the reverse proxying through nginx server will work.
