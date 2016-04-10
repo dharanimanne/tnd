@@ -1,4 +1,4 @@
-module.expo://graph.facebook.com/me?fields=id,name,first_name,last_name,email,birthday,link,picture.width(800).height(800),gender&access_token='+fb_accesstokents = function(FacebookLogin) {
+module.exports = function(FacebookLogin) {
 
     /* Login method through facebook
      *
